@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Just Expressions Skin Generator – Free Minecraft Eye & Blushing Maker</title>
+  <meta name="description" content="Free online Just Expressions & Player Extension Minecraft skin generator. Automatically add 2x2, 2x1, 2x3, 3x1, 1x1 eyes, eyelashes, and blushing to your 64x64 skin in one click!">
+  <meta name="keywords" content="Just Expressions skin generator, Fresh Moves skin generator, Player Extension Just Expressions, Minecraft 2x2 eyes skin, Minecraft blushing skin maker, EMF ETF skin editor">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Just Expressions Skin Generator – Minecraft Eye & Blushing Maker">
+  <meta property="og:description" content="Convert any 64x64 Minecraft skin for Just Expressions & Fresh Animations Player Extension with 2x2 eyes, eyelashes, and blushing.">
+  <meta property="og:type" content="website">
+  <style>
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+    body { background: #0f0f13; color: #f4f4f5; max-width: 940px; margin: 30px auto; padding: 20px; }
+    h1 { margin: 0 0 6px 0; font-size: 28px; }
+    p.sub { color: #a1a1aa; margin: 0 0 24px 0; font-size: 14px; }
+    .card { background: #18181f; border: 1px solid #2b2b36; padding: 20px; border-radius: 14px; margin-bottom: 18px; }
+    .card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #e4e4e7; }
+    .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    button { background: #252530; color: #e4e4e7; border: 1px solid #383847; padding: 8px 13px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px; transition: 0.15s; }
+    button:hover { background: #323242; }
+    button.active { background: #6366f1; border-color: #818cf8; color: white; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 14px; }
+    .box { background: #121217; padding: 14px; border-radius: 10px; border: 1px solid #262631; }
+    label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; cursor: pointer; margin-bottom: 8px; }
+    label:last-child { margin-bottom: 0; }
+    input[type="color"] { border: none; width: 28px; height: 28px; background: none; cursor: pointer; padding: 0; }
+    select { background: #252530; color: white; border: 1px solid #383847; padding: 6px 10px; border-radius: 6px; font-size: 13px; width: 100%; margin-top: 6px; }
+    .preview-wrap { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+    canvas { image-rendering: pixelated; border: 2px solid #383847; border-radius: 10px; background: repeating-conic-gradient(#1f1f26 0% 25%, #141419 0% 50%) 50% / 16px 16px; cursor: crosshair; }
+    .download-btn { background: #10b981; border-color: #34d399; color: #042f1e; font-size: 15px; padding: 14px 22px; width: 100%; margin-top: 12px; }
+    .download-btn:hover { background: #059669; color: white; }
+    .reset-btn { background: #ef444422; border-color: #ef444455; color: #fca5a5; width: 100%; margin-top: 8px; }
+    .reset-btn:hover { background: #ef444444; }
+    .status { font-size: 13px; color: #34d399; margin-top: 8px; font-weight: 600; }
+    footer { text-align: center; font-size: 12px; color: #71717a; margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <h1>✨ Just Expressions Skin Generator</h1>
+  <p class="sub">Convert any 64x64 Minecraft skin for Just Expressions & Player Extension with exact UV eye mapping, eyelashes, and blushing.</p>
+
+  <div class="card">
+    <div class="card-title">1. Upload your Minecraft Skin (64x64 PNG)</div>
+    <input type="file" id="upload" accept="image/png">
+    <div class="status" id="statusText">No skin uploaded yet.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2. Select Eye Style & Height</div>
+    
+    <div class="box" style="margin-bottom: 12px;">
+      <strong style="font-size: 13px;">Eye Size & Position (Pixels above chin):</strong>
+      <div class="btn-group" style="margin-top: 8px;" id="presetGroup">
+        <button class="active" data-preset="2x2_1" onclick="selectPreset(this)">2x2 (1 px above chin)</button>
+        <button data-preset="2x2_2" onclick="selectPreset(this)">2x2 (2 px above chin)</button>
+        <button data-preset="2x2_3" onclick="selectPreset(this)">2x2 (3 px above chin)</button>
+        <button data-preset="2x2_4" onclick="selectPreset(this)">2x2 (4 px above chin)</button>
+        <button data-preset="2x1_1" onclick="selectPreset(this)">2x1 (1 px above / Alex)</button>
+        <button data-preset="2x1_2" onclick="selectPreset(this)">2x1 (2 px above / Steve)</button>
+        <button data-preset="2x1_3" onclick="selectPreset(this)">2x1 (3 px above chin)</button>
+        <button data-preset="2x1_4" onclick="selectPreset(this)">2x1 (4 px above chin)</button>
+        <button data-preset="2x1_far" onclick="selectPreset(this)">2x1 Farset (Wide spacing)</button>
+        <button data-preset="2x3_1" onclick="selectPreset(this)">2x3 (Tall eyes, 1 px above)</button>
+        <button data-preset="3x1_2" onclick="selectPreset(this)">3x1 Enderman (2 px above)</button>
+        <button data-preset="3x1_3" onclick="selectPreset(this)">3x1 Enderman (3 px above)</button>
+        <button data-preset="1x1_1" onclick="selectPreset(this)">1x1 Simple (1 px above)</button>
+        <button data-preset="1x1_2" onclick="selectPreset(this)">1x1 Simple (2 px above)</button>
+        <button data-preset="1x1_3" onclick="selectPreset(this)">1x1 Simple (3 px above)</button>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="box">
+        <strong style="font-size: 13px; display:block; margin-bottom:8px;">Colors (Pupil, Sclera & Eyelid)</strong>
+        <label><input type="checkbox" id="autoColors" checked onchange="render()"> Auto-detect colors from skin</label>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
+          <label><input type="color" id="pupilColor" value="#6b5c3e" onchange="manualColor()"> Pupil</label>
+          <label><input type="color" id="scleraColor" value="#ffffff" onchange="render()"> Sclera</label>
+          <label><input type="color" id="lidColor" value="#dfc4a2" onchange="manualColor()"> Eyelid/Skin</label>
+        </div>
+        <label style="margin-top: 8px;"><input type="checkbox" id="coverEyes" onchange="render()"> Cover original eyes on face with skin color</label>
+      </div>
+
+      <div class="box">
+        <strong style="font-size: 13px; display:block; margin-bottom:8px;">Blushing & Eyelashes</strong>
+        <label><input type="checkbox" id="blush" checked onchange="render()"> Add Blushing</label>
+        <div style="display:flex; gap:12px; align-items:center; margin-top:6px;">
+          <input type="color" id="blushColor" value="#ff7a9e" onchange="render()">
+          <select id="blushStyle" onchange="render()">
+            <option value="hat_1px">Outer Hat Layer: 1 px on cheeks (Recommended)</option>
+            <option value="hat_2px">Outer Hat Layer: 2 px under eyes</option>
+            <option value="base_1px">Base Layer: 1 px on outer cheeks</option>
+          </select>
+        </div>
+        <label style="margin-top: 10px;"><input type="checkbox" id="eyelashes" onchange="render()"> Add extra eyelashes (UV 56..59)</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="card preview-wrap">
+    <div>
+      <div style="font-size: 13px; color: #a1a1aa; margin-bottom: 6px;">UV Template Area (Zoomed)</div>
+      <canvas id="uvPreview" width="8" height="8" style="width: 176px; height: 176px;"></canvas>
+    </div>
+    <div>
+      <div style="font-size: 13px; color: #a1a1aa; margin-bottom: 6px;">Face Preview (Click to pick color)</div>
+      <canvas id="facePreview" width="8" height="8" style="width: 176px; height: 176px;"></canvas>
+    </div>
+    <div style="flex: 1; min-width: 220px;">
+      <div class="box">
+        <strong style="font-size: 13px;">Eyedropper target when clicking face:</strong>
+        <select id="pickerTarget">
+          <option value="pupilColor">Set as Pupil Color</option>
+          <option value="lidColor">Set as Eyelid/Skin Color</option>
+          <option value="blushColor">Set as Blushing Color</option>
+        </select>
+      </div>
+      <button class="download-btn" onclick="downloadSkin()">⬇️ Download Ready Skin (.png)</button>
+      <button class="reset-btn" onclick="resetOriginal()">↩️ Reset to Original Skin</button>
+    </div>
+  </div>
+  <canvas id="fullPreview" width="64" height="64" style="display:none;"></canvas>
+
+  <footer>Compatible with Just Expressions, Player Extension X Just Expressions, Fresh Moves, ETF & EMF.</footer>
+  <script>
+    const fullCanvas = document.getElementById('fullPreview');
+    const fullCtx = fullCanvas.getContext('2d');
+    const faceCanvas = document.getElementById('facePreview');
+    const faceCtx = faceCanvas.getContext('2d');
+    const uvCanvas = document.getElementById('uvPreview');
+    const uvCtx = uvCanvas.getContext('2d');
+
+    let baseImage = null;
+    let currentPreset = '2x2_1';
+
+    const PRESETS = {
+      '2x2_1':   { x: 24, y: 6, lidY: 5, w: 2, h: 2, hFromBottom: 1, sclera: true },
+      '2x2_2':   { x: 24, y: 3, lidY: 2, w: 2, h: 2, hFromBottom: 2, sclera: true },
+      '2x2_3':   { x: 28, y: 6, lidY: 5, w: 2, h: 2, hFromBottom: 3, sclera: true },
+      '2x2_4':   { x: 28, y: 3, lidY: 2, w: 2, h: 2, hFromBottom: 4, sclera: true },
+      '2x1_1':   { x: 4,  y: 7, lidY: 6, w: 2, h: 1, hFromBottom: 1, sclera: true },
+      '2x1_2':   { x: 4,  y: 5, lidY: 4, w: 2, h: 1, hFromBottom: 2, sclera: true },
+      '2x1_3':   { x: 4,  y: 3, lidY: 2, w: 2, h: 1, hFromBottom: 3, sclera: true },
+      '2x1_4':   { x: 4,  y: 1, lidY: 0, w: 2, h: 1, hFromBottom: 4, sclera: true },
+      '2x1_far': { x: 36, y: 7, lidY: 6, w: 2, h: 1, hFromBottom: 2, sclera: true },
+      '2x3_1':   { x: 32, y: 5, lidY: 4, w: 2, h: 3, hFromBottom: 1, sclera: true },
+      '3x1_2':   { x: 32, y: 3, lidY: 2, w: 3, h: 1, hFromBottom: 2, sclera: true },
+      '3x1_3':   { x: 32, y: 1, lidY: 0, w: 3, h: 1, hFromBottom: 3, sclera: true },
+      '1x1_1':   { x: 2,  y: 7, lidY: -1, w: 1, h: 1, hFromBottom: 1, sclera: false },
+      '1x1_2':   { x: 2,  y: 5, lidY: -1, w: 1, h: 1, hFromBottom: 2, sclera: false },
+      '1x1_3':   { x: 2,  y: 3, lidY: -1, w: 1, h: 1, hFromBottom: 3, sclera: false }
+    };
+
+    document.getElementById('upload').addEventListener('change', function(e) {
+      const file = e.target.files.item(0);
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const img = new Image();
+        img.onload = function() {
+          baseImage = img;
+          document.getElementById('statusText').textContent = '✅ Loaded: ' + file.name;
+          if (document.getElementById('autoColors').checked) detectColors();
+          render();
+        };
+        img.src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    faceCanvas.addEventListener('click', function(e) {
+      if (!baseImage) return;
+      const rect = faceCanvas.getBoundingClientRect();
+      const x = Math.floor(((e.clientX - rect.left) / rect.width) * 8);
+      const y = Math.floor(((e.clientY - rect.top) / rect.height) * 8);
+      const hex = getPixelHex(faceCtx, x, y);
+      const target = document.getElementById('pickerTarget').value;
+      document.getElementById(target).value = hex;
+      if (target !== 'blushColor') document.getElementById('autoColors').checked = false;
+      render();
+    });
+
+    function selectPreset(btn) {
+      document.querySelectorAll('#presetGroup button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentPreset = btn.getAttribute('data-preset');
+      if (baseImage && document.getElementById('autoColors').checked) detectColors();
+      render();
+    }
+
+    function manualColor() {
+      document.getElementById('autoColors').checked = false;
+      render();
+    }
+
+    function toHex(val) {
+      return val.toString(16).padStart(2, '0');
+    }
+
+    function getPixelHex(ctx, x, y) {
+      const d = ctx.getImageData(x, y, 1, 1).data;
+      return '#' + toHex(d.at(0)) + toHex(d.at(1)) + toHex(d.at(2));
+    }
+
+    function setPixel(ctx, x, y, hex) {
+      ctx.fillStyle = hex;
+      ctx.fillRect(x, y, 1, 1);
+    }
+
+    function detectColors() {
+      if (!baseImage) return;
+      fullCtx.clearRect(0, 0, 64, 64);
+      fullCtx.drawImage(baseImage, 0, 0);
+
+      const cfg = PRESETS[currentPreset];
+      const bottomEyeY = 15 - cfg.hFromBottom;
+      document.getElementById('lidColor').value = getPixelHex(fullCtx, 11, bottomEyeY);
+      document.getElementById('pupilColor').value = getPixelHex(fullCtx, 10, bottomEyeY);
+    }
+
+    function resetOriginal() {
+      if (!baseImage) return;
+      fullCtx.clearRect(0, 0, 64, 64);
+      fullCtx.drawImage(baseImage, 0, 0);
+      updatePreviews(PRESETS[currentPreset]);
+    }
+
+    function render() {
+      if (!baseImage) return;
+      fullCtx.clearRect(0, 0, 64, 64);
+      fullCtx.drawImage(baseImage, 0, 0);
+
+      const cfg = PRESETS[currentPreset];
+      const pupilHex = document.getElementById('pupilColor').value;
+      const scleraHex = document.getElementById('scleraColor').value;
+      const lidHex = document.getElementById('lidColor').value;
+
+      if (cfg.lidY >= 0) {
+        for (let i = 0; i < cfg.w * 2; i++) {
+          setPixel(fullCtx, cfg.x + i, cfg.lidY, lidHex);
+        }
+      }
+
+      for (let row = 0; row < cfg.h; row++) {
+        for (let col = 0; col < cfg.w; col++) {
+          const isLeftOuter = (cfg.sclera && col === 0);
+          setPixel(fullCtx, cfg.x + col, cfg.y + row, isLeftOuter ? scleraHex : pupilHex);
+          const isRightOuter = (cfg.sclera && col === cfg.w - 1);
+          setPixel(fullCtx, cfg.x + cfg.w + col, cfg.y + row, isRightOuter ? scleraHex : pupilHex);
+        }
+      }
+
+      if (document.getElementById('eyelashes').checked) {
+        setPixel(fullCtx, 56, 1, pupilHex); setPixel(fullCtx, 56, 2, pupilHex);
+        setPixel(fullCtx, 59, 1, pupilHex); setPixel(fullCtx, 59, 2, pupilHex);
+        setPixel(fullCtx, 56, 0, pupilHex); setPixel(fullCtx, 57, 0, pupilHex);
+        setPixel(fullCtx, 58, 0, pupilHex); setPixel(fullCtx, 59, 0, pupilHex);
+      }
+
+      if (document.getElementById('coverEyes').checked) {
+        const faceBottomY = 15 - cfg.hFromBottom;
+        for (let row = 0; row < cfg.h; row++) {
+          for (let col = 0; col < cfg.w; col++) {
+            setPixel(fullCtx, 11 - cfg.w + col, faceBottomY - row, lidHex);
+            setPixel(fullCtx, 12 + col, faceBottomY - row, lidHex);
+          }
+        }
+      }
+
+      if (document.getElementById('blush').checked) {
+        const blushHex = document.getElementById('blushColor').value;
+        const style = document.getElementById('blushStyle').value;
+        const cheekY = 15 - cfg.hFromBottom;
+
+        if (style === 'hat_1px') {
+          setPixel(fullCtx, 40, cheekY, blushHex);
+          setPixel(fullCtx, 47, cheekY, blushHex);
+        } else if (style === 'hat_2px') {
+          const underY = Math.min(15, cheekY + 1);
+          setPixel(fullCtx, 41, underY, blushHex);
+          setPixel(fullCtx, 42, underY, blushHex);
+          setPixel(fullCtx, 45, underY, blushHex);
+          setPixel(fullCtx, 46, underY, blushHex);
+        } else if (style === 'base_1px') {
+          setPixel(fullCtx, 8, cheekY, blushHex);
+          setPixel(fullCtx, 15, cheekY, blushHex);
+        }
+      }
+
+      updatePreviews(cfg);
+    }
+
+    function updatePreviews(cfg) {
+      faceCtx.clearRect(0, 0, 8, 8);
+      faceCtx.drawImage(fullCanvas, 8, 8, 8, 8, 0, 0, 8, 8);
+      faceCtx.drawImage(fullCanvas, 40, 8, 8, 8, 0, 0, 8, 8);
+
+      const viewX = Math.floor(cfg.x / 8) * 8;
+      uvCtx.clearRect(0, 0, 8, 8);
+      uvCtx.drawImage(fullCanvas, viewX, 0, 8, 8, 0, 0, 8, 8);
+    }
+
+    function downloadSkin() {
+      if (!baseImage) return alert('Please upload a skin first!');
+      const link = document.createElement('a');
+      link.download = 'just_expressions_' + currentPreset + '.png';
+      link.href = fullCanvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>
